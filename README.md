@@ -17,6 +17,9 @@ We are Focusing on challenges regarding the Sri Lanka Traffic and drivers.
 #### **IT19217482**
 * Unable to identify and address individuals/pedestrians who violates traffic laws near crossings.
 
+#### **IT19022116**
+* Predict the future traffic violation frequency and recongnize the traffic violation that causes accident and identify black spots of traffic violation?
+
 # Individual Objectives
 
 #### **IT19035154**
@@ -32,3 +35,8 @@ We are Focusing on challenges regarding the Sri Lanka Traffic and drivers.
 #### **IT19217482**
 
 * Identifying and addressing individuals/ pedestrians using face recognition and send warnings, tickets throgh emails
+
+#### **IT19022116**
+* Identify the main factors that affect for the traffic violation and identify the accident that causes by traffic violation and identify the black spot.
+* First develop a mobile application where cops will be able to collect real-time violation data.
+* And analyse the data and implement all these information through a mobile application where cops and other parties can access those information. And drivers also have access to particular information that may useful for drive safely.
