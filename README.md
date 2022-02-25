@@ -14,6 +14,9 @@ We are Focusing on challenges regarding the Sri Lanka Traffic and drivers.
 #### **IT19028538**
 * how we can detect the traffic violations from the CCTV in real time 
 
+#### **IT19022116**
+* Predict the future traffic violation frequency and traffic violations that causes accident and identify black spots of traffic violation? 
+
 # Individual Objectives
 
 #### **IT19035154**
@@ -25,3 +28,8 @@ We are Focusing on challenges regarding the Sri Lanka Traffic and drivers.
 
 * Identify the vehicle number plate, vehicle type, vehicle color and get a picture of the vehicle in real-time by CCTV and send it instantly to the nearby cop. 
 * Police cops can preview the trafic violation and take the action
+
+#### **IT19022116**
+* Identify the main factors that affect for the traffic violation. Identify the traffic violation that affects for the accident.
+* For that first need to collect real-time data through a mobile application and analysed al the data and visualized the data to cops other parties through mobile application.
+* Drivers also have the access to view particular data that will helpto drive safely.
