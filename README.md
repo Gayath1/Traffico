@@ -14,6 +14,9 @@ We are Focusing on challenges regarding the Sri Lanka Traffic and drivers.
 #### **IT19028538**
 * how we can detect the traffic violations from the CCTV in real time 
 
+#### **IT19217482**
+* Unable to identify and address individuals/pedestrians who violates traffic laws near crossings.
+
 # Individual Objectives
 
 #### **IT19035154**
@@ -25,3 +28,7 @@ We are Focusing on challenges regarding the Sri Lanka Traffic and drivers.
 
 * Identify the vehicle number plate, vehicle type, vehicle color and get a picture of the vehicle in real-time by CCTV and send it instantly to the nearby cop. 
 * Police cops can preview the trafic violation and take the action
+
+#### **IT19217482**
+
+* Identifying and addressing individuals/ pedestrians using face recognition and send warnings, tickets throgh emails
