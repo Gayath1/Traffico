@@ -98,8 +98,8 @@ export default function ({ navigation }) {
               onChangeText={(text) => setEmail(text)}
             />
 
-            <Text style={{ marginTop: 15, fontFamily: 'SFPRODISPLAYBOLD',                color: isDarkmode ? "#FFFFFF" : "#000000",
- }}>Password</Text>
+            <Text style={{ marginTop: 15, fontFamily: 'SFPRODISPLAYBOLD',color: isDarkmode ? "#FFFFFF" : "#000000",
+                          }}>Password</Text>
             <TextInput
               containerStyle={{ marginTop: 15 }}
               placeholder="Enter your password"
@@ -115,8 +115,10 @@ export default function ({ navigation }) {
               onPress={() => {
                 login();
               }}
+              // textStyle={{fontFamily: SFPRODISPLAYBOLD}}
               style={{
                 marginTop: 20,
+                fontFamily: 'SFPRODISPLAYBOLD'
               }}
               disabled={loading}
             />
@@ -129,8 +131,9 @@ export default function ({ navigation }) {
                 justifyContent: "center",
               }}
             >
-              <Text size="md" style={{                color: isDarkmode ? "#FFFFFF" : "#000000",
-}}>Don't have an account?</Text>
+              <Text size="md" style={{
+                color: isDarkmode ? "#FFFFFF" : "#000000",
+                }}>Don't have an account?</Text>
               <TouchableOpacity
                 onPress={() => {
                   navigation.navigate("Register");
@@ -163,8 +166,8 @@ export default function ({ navigation }) {
                   navigation.navigate("ForgetPassword");
                 }}
               >
-                <Text size="md" fontWeight="bold" style={{                color: isDarkmode ? "#FFFFFF" : "#000000",
-}}>
+                <Text size="md" fontWeight="bold" style={{color:"#045DE9", fontWeight:"bold"
+                                                        }}>
                   Forget password
                 </Text>
               </TouchableOpacity>
