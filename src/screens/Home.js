@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Linking } from "react-native";
+import { View, Linking, Card  } from "react-native";
 import { getAuth, signOut } from "firebase/auth";
 import {
   Layout,
@@ -20,6 +20,11 @@ export default function ({ navigation }) {
     <Layout>
       <TopNav
         middleContent="Home"
+        leftContent={<Ionicons
+            name={isDarkmode ? "sunny" : "moon"}
+            size={20}
+            color={isDarkmode ? themeColor.white100 : themeColor.dark}
+          />}
         rightContent={
           <Ionicons
             name={isDarkmode ? "sunny" : "moon"}
@@ -27,6 +32,7 @@ export default function ({ navigation }) {
             color={isDarkmode ? themeColor.white100 : themeColor.dark}
           />
         }
+        
         rightAction={() => {
           if (isDarkmode) {
             setTheme("light");
@@ -45,7 +51,7 @@ export default function ({ navigation }) {
         <Section style={{ marginTop: 20 }}>
           <SectionContent>
             <Text fontWeight="bold" style={{ textAlign: "center" }}>
-              These UI components provided by Rapi UI
+              These UI  components provided by Rapi UI
             </Text>
             <Button
               style={{ marginTop: 10 }}
@@ -74,6 +80,7 @@ export default function ({ navigation }) {
             />
           </SectionContent>
         </Section>
+        
       </View>
     </Layout>
   );

@@ -5,6 +5,8 @@ import {
   TopNav,
   Text,
   themeColor,
+  Section,
+  SectionContent,
   useTheme,
 } from "react-native-rapi-ui";
 import { Ionicons } from "@expo/vector-icons";
@@ -38,15 +40,25 @@ export default function ({ navigation }) {
           }
         }}
       />
-      <View
-        style={{
-          flex: 1,
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        {/* This text using ubuntu font */}
-        <Text fontWeight="bold">This is the second screen</Text>
+      <View style={{flex: 1, flexDirection: 'row',alignItems: "center",justifyContent:"center"}}>
+ 
+      
+        <View style={{flex: 1, margin:10 }} >
+        <Section >
+        <SectionContent>
+          {/* This text using ubuntu font */}
+          <Text fontWeight="bold">This is the second screen</Text>
+        </SectionContent>
+      </Section>
+        </View>
+        <View style={{flex: 1,margin:10}} >
+        <Section >
+        <SectionContent>
+          {/* This text using ubuntu font */}
+          <Text fontWeight="bold">This is the second screen</Text>
+        </SectionContent>
+      </Section>
+        </View>
       </View>
     </Layout>
   );

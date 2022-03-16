@@ -76,6 +76,7 @@ export default function ({ navigation }) {
               style={{
                 alignSelf: "center",
                 padding: 30,
+                fontWeight:"bold"
               }}
             >
               Register
@@ -133,6 +134,7 @@ export default function ({ navigation }) {
                   fontWeight="bold"
                   style={{
                     marginLeft: 5,
+                    fontWeight:"bold"
                   }}
                 >
                   Login here

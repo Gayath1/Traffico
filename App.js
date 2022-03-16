@@ -23,20 +23,26 @@ export default function App(props) {
 
   // Ignore firebase v9 AsyncStorage warning
   React.useEffect(() => {
-    loadFonts();
-    LogBox.ignoreLogs([
-      "AsyncStorage has been extracted from react-native core and will be removed in a future release. It can now be installed and imported from '@react-native-async-storage/async-storage' instead of 'react-native'. See https://github.com/react-native-async-storage/async-storage",
-    ]);
+    async function loadFonts() {
+      await Font.loadAsync({
+        SFPRODISPLAYBOLD: require('./assets/fonts/SFPRODISPLAYBOLD.otf'),
+      });
+  
+      setIsReady(true);
+    }
+    // LogBox.ignoreLogs([
+    //   "AsyncStorage has been extracted from react-native core and will be removed in a future release. It can now be installed and imported from '@react-native-async-storage/async-storage' instead of 'react-native'. See https://github.com/react-native-async-storage/async-storage",
+    // ]);
 
   }, []);
 
-  async function loadFonts() {
-    await Font.loadAsync({
-      SFPRODISPLAYBOLD: require('./assets/fonts/SFPRODISPLAYBOLD.otf'),
-    });
+  // async function loadFonts() {
+  //   await Font.loadAsync({
+  //     SFPRODISPLAYBOLD: require('./assets/fonts/SFPRODISPLAYBOLD.otf'),
+  //   });
 
-    setIsReady(true);
-  }
+  //   setIsReady(true);
+  // }
 
   // if (!isReady) {
   //   return <AppLoading></AppLoading>;

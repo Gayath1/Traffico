@@ -76,6 +76,7 @@ export default function ({ navigation }) {
               style={{
                 fontFamily: 'SFPRODISPLAYBOLD',
                 fontSize:30,
+                fontWeight:"bold",
                 alignSelf: "center",
                 padding: 30,
                 color: isDarkmode ? "#FFFFFF" : "#000000",
