@@ -1,108 +1,42 @@
-# Template Firebase auth flow
+# Main objective
 
-Template starter with React Navigation and Firebase auth using React Context
+Introduce Smart Fine payment and management system for Cops to improve the traffic management system and secure health of cops and drivers in this pandemic situation
 
-# Preview
+# Main Research questions
 
-![../media/authflow.png](../media/authflow.png)
+We are Focusing on challenges regarding the Sri Lanka Traffic and drivers.
 
-# Installation
+# Individual research question
 
-1. Install [node.js](https://nodejs.org/en/)
-2. Install Expo
+#### **IT19035154**
+* How to Check driver’s sobriety without physical contact?
 
-   ```jsx
-   npm install --global expo-cli
-   ```
+#### **IT19028538**
+* how we can detect the traffic violations from the CCTV in real time
 
-3. Download this repo
-4. Install deps on your template folder
+#### **IT19217482**
+* Unable to identify and address individuals/pedestrians who violates traffic laws near crossings.
 
-   ```jsx
-   npm install
-   ```
+#### **IT19022116**
+* Predict the future traffic violation frequency and recongnize the traffic violation that causes accident and identify black spots of traffic violation?
 
-5. Start the environtment
+# Individual Objectives
 
-   ```jsx
-   expo start
-   ```
+#### **IT19035154**
+*	Identifying driver’s facial expression. When drivers are stopped at the checkpoint cops can use the smart phone and scan their faces with the camera. Using the mobile camera getting drivers’ facial footage and system identify the driver’s sobriety.
+*	Giving the Cops a preview of the Camera input, so cops can adjust the location of the device and get a clear input to the device. After the detection complete cops can view the result of the detection and continue with their procedure according to the results.
 
-# Auth Flow
 
-### Firebase Setup
+#### **IT19028538**
 
-- Set up a new firebase project
-- Go to Authentication and under Sign-in Method enable Email/Password
-- Fill this firebase config to your config inside `./src/navigation/AppNavigator.js`
+* Identify the vehicle number plate, vehicle type, vehicle color and get a picture of the vehicle in real-time by CCTV and send it instantly to the nearby cop.
+* Police cops can preview the trafic violation and take the action
 
-```jsx
-// Better put your these secret keys in .env file
-const firebaseConfig = {
-	apiKey: '',
-	authDomain: '',
-	databaseURL: '',
-	projectId: '',
-	storageBucket: '',
-	messagingSenderId: '',
-	appId: '',
-};
-```
+#### **IT19217482**
 
-### Prebuilt UI Screens
+* Identifying and addressing individuals/ pedestrians using face recognition and send warnings, tickets throgh emails
 
-There are 3 screens included inside `./src/screens/auth` and one more thing its included with the firebase auth function, so you don't need to create the function. The ilustrations I use [undraw](https://undraw.co/)
-
-- Login screen `./src/screens/auth/login.tsx`
-- Register screen `./src/screens/auth/register.tsx`
-- Forget password screen `./src/screens/auth/forget.tsx`
-
-I personally use these screens on my project [TiktTeng](https://github.com/codingki/TikTeng) in early stages before the redesign, feel free to use these screens ❤️
-
-### React Navigation Auth Flow
-
-The checking logged users process is inside `./src/provider/AuthProvider` I use React Context, you can add more functions like get the data of the user and store it to the context (better static data, ex: uid)
-
-Inside the navigator `./src/navigation/AppNavigator.js`
-There's 2 stack navigator :
-
-- `<Auth/>` → for not logged in users stack
-- `<Main/>` → for logged in users stack
-- `<Loading/>` → when checking if the user is logged in or not loading screen
-
-```jsx
-export default () => {
-	const auth = useContext(AuthContext);
-	const user = auth.user;
-	return (
-		<NavigationContainer>
-			{user == null && <Loading />}
-			{user == false && <Auth />}
-			{user == true && <Main />}
-		</NavigationContainer>
-	);
-};
-```
-
-## Rapi UI
-
-![../media/hero.png](../media/hero.png)
-
-These UI components are provided by [Rapi UI](https://rapi-ui.kikiding.space/).
-Check the [documentation](https://rapi-ui.kikiding.space/docs/) for usage and more components.
-
-# File Managements
-
-These are the folders and the functionality
-
-```jsx
-/src/assets -> for media such as images, etc
-/src/components -> for components
-/src/navigation -> for React Navigation
-/src/provider -> for React Context
-/src/screens -> for Screens
-```
-
-if you find these useful don't forget to give it a star ⭐ and share it to your friends ❤️
-
-Reach me on [twitter](https://twitter.com/kikiding/)
+#### **IT19022116**
+* Identify the main factors that affect for the traffic violation and identify the accident that causes by traffic violation and identify the black spot.
+* First develop a mobile application where cops will be able to collect real-time violation data.
+* And analyse the data and implement all these information through a mobile application where cops and other parties can access those information. And drivers also have access to particular information that may useful for drive safely.
