@@ -55,7 +55,7 @@ const Main = () => {
       }}
     >
       <MainStack.Screen name="Home" component={Home} />
-      <MainStack.Screen name="SecondScreen" component={SecondScreen} />
+      <MainStack.Screen name="Menu" component={SecondScreen} />
     </MainStack.Navigator>
   );
 };
