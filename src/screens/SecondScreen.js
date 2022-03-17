@@ -1,15 +1,16 @@
 import React from "react";
-import { View } from "react-native";
+import { View,  Image,Text } from "react-native";
 import {
   Layout,
   TopNav,
-  Text,
+  
   themeColor,
   Section,
   SectionContent,
   useTheme,
 } from "react-native-rapi-ui";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons,Fontisto } from "@expo/vector-icons";
+
 
 export default function ({ navigation }) {
   const { isDarkmode, setTheme } = useTheme();
@@ -44,7 +45,38 @@ export default function ({ navigation }) {
  
       
         <View style={{flex: 1, margin:10 }} >
-        <Section >
+        <Section style={{height:200,alignItems: "center",
+                justifyContent:"center"}}>
+        <SectionContent style={{alignItems: "center"}}>
+        <Image
+              resizeMode="contain"
+              style={{
+                height: 50,
+                width: 50,
+              
+              }}
+              source={require("../../assets/driving.png")}
+            />
+          <Text style={{fontweight: "bold", fontFamily: 'SFPRODISPLAYBOLD', color: isDarkmode ? "#FFFFFF" : "#000000", textAlign: "center"}}>Alcohol Test</Text>
+
+        </SectionContent>
+      </Section>
+        </View>
+        <View style={{flex: 1,margin:10}} >
+        <Section style={{height:200}}>
+        <SectionContent>
+          {/* This text using ubuntu font */}
+          <Text fontWeight="bold">This is the second screen</Text>
+          <Fontisto name="blood-test" size={24} color="black" />
+        </SectionContent>
+      </Section>
+        </View>
+      </View>
+      <View style={{flex: 1, flexDirection: 'row'}}>
+ 
+      
+        <View style={{flex: 1, margin:10 }} >
+        <Section style={{height:200}} >
         <SectionContent>
           {/* This text using ubuntu font */}
           <Text fontWeight="bold">This is the second screen</Text>
@@ -52,7 +84,7 @@ export default function ({ navigation }) {
       </Section>
         </View>
         <View style={{flex: 1,margin:10}} >
-        <Section >
+        <Section style={{height:200}}>
         <SectionContent>
           {/* This text using ubuntu font */}
           <Text fontWeight="bold">This is the second screen</Text>
@@ -60,6 +92,7 @@ export default function ({ navigation }) {
       </Section>
         </View>
       </View>
+      
     </Layout>
   );
 }
