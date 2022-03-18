@@ -84,61 +84,25 @@ export default function ({ navigation }) {
       <View style={{flex: 1, flexDirection: 'row',alignItems: "center",justifyContent:"center"}}>
  
       
-        <View style={{flex: 1, margin:10 }} >
-        <Section style={{height:200,alignItems: "center",
-                justifyContent:"center",}}>
-        <SectionContent style={{alignItems: "center"}}>
-        {/* <Image
-              resizeMode="contain"
-              style={{
-                height: 50,
-                width: 50,
-              
-              }}
-              source={require("../../assets/driving.png")}
-            /> */}
-          <Fontisto name="blood-test" size={24} color= {isDarkmode ? "#FFFFFF" : "#000000"}/>
-          <Text style={{ fontFamily: 'Roboto_400Regular', fontSize:25,fontweight: "bold", color: isDarkmode ? "#FFFFFF" : "#000000", textAlign: "center"}}>Alcohol Test</Text>
-         
-        </SectionContent>
-      </Section>
+        <View style={{flex: 1, margin:10,shadowColor: '#000', backgroundColor:"#fff",
+        height:200, borderRadius:10,
+                  shadowOffset: { width: 0, height: 1 },
+                  shadowOpacity: 0.8,
+                  shadowRadius: 2,  
+                  elevation: 5 }} >
+                  <Text style={{ fontFamily: 'SFPRODISPLAYBOLD', fontSize:20,fontWeight: 'bold', padding:20, color: isDarkmode ? "#FFFFFF" : "#141414"}}>Let's Ensure Road Safety</Text>
+
+  
         </View>
-        <View style={{flex: 1,margin:10}} >
-        <Card color= {isDarkmode ? "#FFFFFF" : "#000000"} style={{height:200,borderRadius: 10,backgroundColor: isDarkmode ? "#000000" : "#FFFFFF"}}>
-            {/* <Card.Title title="Card Title" subtitle="Card Subtitle"  /> */}
-            <Card.Content style={{alignItems: "center"}}>
-              <Title><Fontisto name="blood-test" size={24} color= {isDarkmode ? "#FFFFFF" : "#000000"}/></Title>
-              <Title style={{ fontFamily: 'SFPRODISPLAYBOLD', color: isDarkmode ? "#FFFFFF" : "#000000"}}>Alcohol Test</Title>
-            </Card.Content>
-          
-            <Card.Actions style={{alignItems:"center",justifyContent: "center", backgroundColor:"#045DE9",bottom:0,flex: 1,borderBottomLeftRadius:10,borderBottomRightRadius:10}}>
-              <Button color="white" style={{ fontFamily: 'SFPRODISPLAYBOLD'}}>Test</Button>
-              
-            </Card.Actions>
-          </Card>
+        <View style={{flex: 1,margin:10,backgroundColor:"#fff",
+        height:200, borderRadius:10,
+                  shadowOffset: { width: 0, height: 1 },
+                  shadowOpacity: 0.8,
+                  shadowRadius: 2,  
+                  elevation: 5 }} >
+        
         </View>
       </View>
-      <View style={{flex: 1, flexDirection: 'row',margin:10}}>
- 
-      
-        <View style={{flex: 1 }} >
-        <Section style={{height:200}} >
-        <SectionContent>
-          {/* This text using ubuntu font */}
-          <Text fontWeight="bold">This is the second screen</Text>
-        </SectionContent>
-      </Section>
-        </View>
-        <View style={{flex: 1}} >
-        <Section style={{height:200}}>
-        <SectionContent>
-          {/* This text using ubuntu font */}
-          <Text fontWeight="bold">This is the second screen</Text>
-        </SectionContent>
-      </Section>
-        </View>
-      </View>
-      
     </Layout>
   );
 }
