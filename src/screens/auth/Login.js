@@ -86,8 +86,8 @@ export default function ({ navigation }) {
             >
               Login
             </Text>
-            <Text style={{ fontFamily: 'SFPRODISPLAYBOLD',                color: isDarkmode ? "#FFFFFF" : "#000000",
-}}>Email</Text>
+            <Text style={{ fontFamily: 'SFPRODISPLAYBOLD', color: isDarkmode ? "#FFFFFF" : "#000000",
+                        }}>Email</Text>
             <TextInput
               containerStyle={{ marginTop: 15 }}
               placeholder="Enter your email"
