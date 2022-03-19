@@ -52,6 +52,7 @@ const Main = () => {
     <MainStack.Navigator
       screenOptions={{
         headerShown: false,
+        
       }}
     >
       <MainStack.Screen name="Home" component={Home} />
