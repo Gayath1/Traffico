@@ -39,7 +39,8 @@ export default function ({ navigation }) {
       <TopNav
       // style={{elevation:0}}
         middleContent="Menu"
-        borderColor="#fff"
+        backgroundColor={isDarkmode ? "#1B1B1F" : "#FFFFFF"}
+        borderColor={isDarkmode ? "#1B1B1F" : "#FFFFFF"}
         leftContent={
           <Ionicons
             name="chevron-back"
@@ -67,7 +68,7 @@ export default function ({ navigation }) {
       <ScrollView
         contentContainerStyle={{
           flexGrow: 1,
-          backgroundColor:'#FFFFFF'
+          backgroundColor: isDarkmode ? "#1B1B1F" : "#FFFFFF",
         }}
       >
         <Text
@@ -77,7 +78,7 @@ export default function ({ navigation }) {
             fontWeight: "bold",
             marginLeft: 10,
             marginTop: 10,
-            color: isDarkmode ? "#FFFFFF" : "#585E71",
+            color: isDarkmode ? "#E3E1E6" : "#585E71",
           }}
         >
           Good Morning, Officer
@@ -88,7 +89,7 @@ export default function ({ navigation }) {
             flex: 1,
             flexDirection: "row",
             margin: 15,
-            backgroundColor: "#fff",
+            backgroundColor: isDarkmode ? "#2B3042" : "#fff",
             borderRadius: 10,
             shadowColor: "#000",
             shadowOffset: { width: 0, height: 1 },
@@ -112,7 +113,7 @@ export default function ({ navigation }) {
                 fontWeight: "bold",
                 fontSize: 80,
                 textAlign: "center",
-                color: isDarkmode ? "#FFFFFF" : "#00164D",
+                color: isDarkmode ? "#DAE1FF" : "#00164D",
               }}
             >
               {new Date().getDate()}
@@ -123,7 +124,7 @@ export default function ({ navigation }) {
                 fontSize: 20,
                 textAlign: "center",
                 fontWeight: "bold",
-                color: isDarkmode ? "#FFFFFF" : "#00164D",
+                color: isDarkmode ? "#DAE1FF" : "#00164D",
               }}
             >
               {MonthName}
@@ -144,7 +145,7 @@ export default function ({ navigation }) {
               style={{
                 fontFamily: "SFPRODISPLAYBOLD",
                 fontSize: 15,
-                color: isDarkmode ? "#FFFFFF" : "#00164D",
+                color: isDarkmode ? "#E3E1E6" : "#00164D",
                 textAlign: "left",
                 fontWeight: "bold",
                 marginLeft: 5,
@@ -157,7 +158,7 @@ export default function ({ navigation }) {
                 fontFamily: "SFProTextRegular",
                 fontSize: 15,
                 textAlign: "left",
-                color: isDarkmode ? "#FFFFFF" : "#161B2C",
+                color: isDarkmode ? "#DDE1F9" : "#161B2C",
                 marginLeft: 15,
                 marginTop: 10,
               }}
@@ -168,7 +169,7 @@ export default function ({ navigation }) {
               style={{
                 fontFamily: "SFProTextRegular",
                 fontSize: 15,
-                color: isDarkmode ? "#FFFFFF" : "#161B2C",
+                color: isDarkmode ? "#DDE1F9" : "#161B2C",
                 textAlign: "left",
                 marginLeft: 15,
                 marginTop: 10,
@@ -186,7 +187,7 @@ export default function ({ navigation }) {
             fontWeight: "bold",
             marginLeft: 10,
             marginTop: 10,
-            color: isDarkmode ? "#FFFFFF" : "#585E71",
+            color: isDarkmode ? "#E3E1E6" : "#585E71",
           }}
         >
           Let's Ensure Road Safety
@@ -205,7 +206,7 @@ export default function ({ navigation }) {
               flex: 1,
               margin: 10,
               shadowColor: "#000",
-              backgroundColor: "#fff",
+              backgroundColor: isDarkmode ? "#2B3042" : "#fff",
               height: 250,
               borderRadius: 10,
               shadowOffset: { width: 0, height: 1 },
@@ -228,7 +229,7 @@ export default function ({ navigation }) {
                 fontSize: 18,
                 fontWeight: "bold",
                 padding: 20,
-                color: isDarkmode ? "#FFFFFF" : "#00164D",
+                color: isDarkmode ? "#E3E1E6" : "#00164D",
               }}
             >
               Drunk Detection
@@ -260,7 +261,7 @@ export default function ({ navigation }) {
             style={{
               flex: 1,
               margin: 10,
-              backgroundColor: "#fff",
+              backgroundColor: isDarkmode ? "#2B3042" : "#fff",
               height: 250,
               borderRadius: 10,
               shadowOffset: { width: 0, height: 1 },
