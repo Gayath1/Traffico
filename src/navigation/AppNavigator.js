@@ -7,6 +7,7 @@ import { StatusBar } from 'react-native'
 // Main
 import Home from "../screens/Home";
 import SecondScreen from "../screens/SecondScreen";
+import DrunkTest from "../screens/DrunkTest";
 
 // Auth screens
 import Login from "../screens/auth/Login";
@@ -58,6 +59,7 @@ const Main = () => {
     >
       <MainStack.Screen name="Home" component={Home} />
       <MainStack.Screen name="Menu" component={SecondScreen} />
+      <MainStack.Screen name="NicDrunk" component={DrunkTest} />
     </MainStack.Navigator>
   );
 };
