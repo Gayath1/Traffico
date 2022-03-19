@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import AppNavigator from "./src/navigation/AppNavigator";
 import { AuthProvider } from "./src/provider/AuthProvider";
 import { ThemeProvider,Text } from "react-native-rapi-ui";
-import { LogBox } from "react-native";
-import { AppLoading } from "expo-app-loading";
 
+import { AppLoading } from "expo-app-loading";
+import { StatusBar } from 'react-native'
 import { useFonts } from 'expo-font';
 
 export default function App(props) {
