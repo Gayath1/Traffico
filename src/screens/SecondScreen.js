@@ -48,13 +48,17 @@ export default function ({ navigation }) {
         <TopNav
           // style={{elevation:0}}
           middleContent="Menu"
+          middleTextStyle={{
+            fontFamily: "SFPRODISPLAYBOLD",
+            color: isDarkmode ? "#E3E1E6" : "#585E71",
+          }}
           backgroundColor={isDarkmode ? "#1B1B1F" : "#FFFFFF"}
           borderColor={isDarkmode ? "#1B1B1F" : "#FFFFFF"}
           leftContent={
             <Ionicons
               name="chevron-back"
               size={20}
-              color={isDarkmode ? themeColor.white100 : themeColor.dark}
+              color={isDarkmode ?"#E3E1E6" : "#585E71"}
             />
           }
           leftAction={() => navigation.goBack()}
@@ -62,7 +66,7 @@ export default function ({ navigation }) {
             <Ionicons
               name={isDarkmode ? "sunny" : "moon"}
               size={20}
-              color={isDarkmode ? themeColor.white100 : themeColor.dark}
+              color={isDarkmode ? "#E3E1E6" : "#585E71"}
             />
           }
           rightAction={() => {
@@ -253,6 +257,9 @@ export default function ({ navigation }) {
                     borderRadius: 15,
                   }}
                   // onPress={onPress}
+                  onPress={() => {
+                    navigation.navigate("NicDrunk");
+                  }}
                 >
                   <Text
                     style={{
