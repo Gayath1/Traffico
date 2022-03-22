@@ -3,7 +3,7 @@ import { initializeApp, getApps } from "firebase/app";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { AuthContext } from "../provider/AuthProvider";
-import { StatusBar } from 'react-native'
+
 // Main
 import Home from "../screens/Home";
 import SecondScreen from "../screens/SecondScreen";
@@ -18,14 +18,15 @@ import Loading from "../screens/utils/Loading";
 
 // Better put your these secret keys in .env file
 const firebaseConfig = {
- apiKey: "AIzaSyAKdoJGktykqJ3kZM-ugZNMTrG2ICxhIVI",
-    authDomain: "traffico-84a9c.firebaseapp.com",
- databaseURL: "",
-    projectId: "traffico-84a9c",
-    storageBucket: "traffico-84a9c.appspot.com",
-    messagingSenderId: "212492132739",
-    appId: "1:212492132739:android:d55dc6f5457646ef90d6b6"
+  apiKey: "AIzaSyAKdoJGktykqJ3kZM-ugZNMTrG2ICxhIVI",
+  authDomain: "traffico-84a9c.firebaseapp.com",
+  databaseURL: "https://traffico-84a9c.firebaseio.com",
+  projectId: "traffico-84a9c",
+  storageBucket: "traffico-84a9c.appspot.com",
+  messagingSenderId: "212492132739",
+  appId: "1:212492132739:android:d55dc6f5457646ef90d6b6",
 };
+
 if (getApps().length === 0) {
   initializeApp(firebaseConfig);
 }
@@ -50,11 +51,9 @@ const MainStack = createNativeStackNavigator();
 
 const Main = () => {
   return (
-    
     <MainStack.Navigator
       screenOptions={{
         headerShown: false,
-        
       }}
     >
       <MainStack.Screen name="Home" component={Home} />
@@ -67,6 +66,7 @@ const Main = () => {
 export default () => {
   const auth = useContext(AuthContext);
   const user = auth.user;
+
   return (
     <NavigationContainer>
       {user == null && <Loading />}

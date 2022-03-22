@@ -22,6 +22,11 @@ import { StatusBar } from "react-native";
 export default function ({ navigation }) {
   const { isDarkmode, setTheme } = useTheme();
   const [MonthName, setMonthName] = useState();
+  const [NIC, setNIC] = useState();
+
+  const submit = async () => {
+    console.log("HI, DAN SAPADAaaaaaaa");
+  };
 
   React.useEffect(() => {
     const months = [
@@ -116,21 +121,21 @@ export default function ({ navigation }) {
               containerStyle={{ marginTop: 5 }}
               placeholder="NIC No"
               style={{
-                backgroundColor:isDarkmode ? "#44464E" : "#F9FAFA",
+                backgroundColor: isDarkmode ? "#44464E" : "#F9FAFA",
                 height: 50,
                 borderRadius: 10,
                 borderColor: "#AFAFAF",
                 borderWidth: 1,
                 paddingLeft: 10,
-                color: isDarkmode ? "#DDE1F9":"#1B1B1F",
-                placeholderTextColor: isDarkmode ? "#DDE1F9":"#1B1B1F"
+                color: isDarkmode ? "#DDE1F9" : "#1B1B1F",
+                placeholderTextColor: isDarkmode ? "#DDE1F9" : "#1B1B1F",
               }}
-              //   value={email}
+              value={NIC}
               autoCapitalize="none"
               autoCompleteType="off"
               autoCorrect={false}
-              keyboardType="email-address"
-              //   onChangeText={(text) => setEmail(text)}
+              keyboardType="NIC"
+              onChangeText={(text) => setNIC(text)}
             />
           </View>
 
@@ -138,7 +143,7 @@ export default function ({ navigation }) {
             style={{
               flex: 1,
               flexDirection: "row",
-              justifyContent: "center"
+              justifyContent: "center",
             }}
           >
             <TouchableOpacity
@@ -149,10 +154,10 @@ export default function ({ navigation }) {
                 justifyContent: "center",
                 borderRadius: 15,
               }}
-              // onPress={onPress}
-              onPress={() => {
-                navigation.navigate("NicDrunk");
-              }}
+              onPress={submit}
+              // onPress={() => {
+              //   navigation.navigate("NicDrunk");
+              // }}
             >
               <Text
                 style={{
