@@ -6,6 +6,7 @@ class Drivers(db.Document):
     name = db.StringField()
     expires = db.StringField()
     type = db.StringField()
+    points = db.IntField()
 
     def to_json(self):
         # convert to jsonify
@@ -14,5 +15,6 @@ class Drivers(db.Document):
             "Nic": self.Nic,
             "name": self.name,
             "expires": self.expires,
-            "type": self.type
+            "type": self.type,
+            "points": self.points
         }

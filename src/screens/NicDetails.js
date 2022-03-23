@@ -24,7 +24,7 @@ export default function ({ route, navigation }) {
   const { isDarkmode, setTheme } = useTheme();
   const [Driver, setDriver] = useState(route.params.Driver);
   const [NIC, setNIC] = useState();
-
+  console.log(Driver.points);
   return (
     <>
       <StatusBar
@@ -257,11 +257,11 @@ export default function ({ route, navigation }) {
                   color: isDarkmode ? "#DDE1F9" : "#1B1B1F",
                   placeholderTextColor: isDarkmode ? "#DDE1F9" : "#1B1B1F",
                 }}
-                value={NIC}
+                value={Driver.points.toString()}
                 autoCapitalize="none"
                 autoCompleteType="off"
                 autoCorrect={false}
-                keyboardType="NIC"
+                keyboardType="numeric"
                 onChangeText={(text) => setNIC(text)}
               />
             </View>
