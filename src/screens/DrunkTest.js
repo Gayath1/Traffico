@@ -18,35 +18,27 @@ import {
 import { Ionicons, Fontisto } from "@expo/vector-icons";
 import { Avatar, Card, Title, Paragraph, Divider } from "react-native-paper";
 import { StatusBar } from "react-native";
+import axios from "axios";
 
 export default function ({ navigation }) {
   const { isDarkmode, setTheme } = useTheme();
-  const [MonthName, setMonthName] = useState();
+  const [Driver, setDriver] = useState();
   const [NIC, setNIC] = useState();
 
   const submit = async () => {
-    console.log("HI, DAN SAPADAaaaaaaa");
+    axios({
+      method: "GET",
+      url: `http://10.0.2.2:5000/api/driver/${NIC}`,
+    })
+      .then((response) => {
+        setDriver(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+     navigation.navigate("NicDrunk",  {Driver: Driver});
   };
 
-  React.useEffect(() => {
-    const months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-    const d = new Date();
-    let monthName = months[d.getMonth()];
-    setMonthName(monthName);
-  });
   return (
     <>
       <StatusBar

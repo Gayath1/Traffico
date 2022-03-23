@@ -1,5 +1,7 @@
 # from flask_pymongo import PyMongo
 from flask import Flask, jsonify, request
+
+import os
 # from flask_mongoengine import MongoEngine
 from database.db import initialize_db
 from flask_restful import Api
@@ -7,6 +9,7 @@ from api.nic import initialize_routes
 
 app = Flask(__name__)
 api = Api(app)
+
 # mongodb_client = PyMongo(
 #     app, uri="mongodb+srv://gayath:Gayya@cluster0.cxze7.mongodb.net/Traffico?retryWrites=true&w=majority")
 # db = mongodb_client.db
@@ -17,6 +20,9 @@ api = Api(app)
 
 # db = MongoEngine()
 # db.init_app(app)
+DB_PASS = os.environ.get("DB_PASS")
+print(DB_PASS)
+# DB_PASS = "Gayya"
 
 app.config['MONGODB_SETTINGS'] = {
     'host': 'mongodb+srv://gayath:Gayya@cluster0.cxze7.mongodb.net/Traffico?retryWrites=true&w=majority'
