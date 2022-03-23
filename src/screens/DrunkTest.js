@@ -32,11 +32,12 @@ export default function ({ navigation }) {
     })
       .then((response) => {
         setDriver(response.data);
+        navigation.navigate("NicDetails", { Driver: response.data });
       })
       .catch((error) => {
         console.log(error);
       });
-     navigation.navigate("NicDrunk",  {Driver: Driver});
+    
   };
 
   return (
