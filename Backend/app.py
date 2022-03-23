@@ -25,7 +25,7 @@ print(DB_PASS)
 # DB_PASS = "Gayya"
 
 app.config['MONGODB_SETTINGS'] = {
-    'host': 'mongodb+srv://gayath:Gayya@cluster0.cxze7.mongodb.net/Traffico?retryWrites=true&w=majority'
+    'host': 'mongodb+srv://gayath:'+str(DB_PASS)+'@cluster0.cxze7.mongodb.net/Traffico?retryWrites=true&w=majority'
 }
 # class Drivers(db.Document):
 
