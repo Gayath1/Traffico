@@ -20,11 +20,16 @@ import { Avatar, Card, Title, Paragraph, Divider } from "react-native-paper";
 import { StatusBar } from "react-native";
 import axios from "axios";
 
+
 export default function ({ route, navigation }) {
   const { isDarkmode, setTheme } = useTheme();
   const [Driver, setDriver] = useState(route.params.Driver);
   const [NIC, setNIC] = useState();
-  console.log(Driver.points);
+
+  const submit = async () => {
+    navigation.navigate("DrunkCamera", { Driver: Driver });
+  };
+
   return (
     <>
       <StatusBar
@@ -282,7 +287,7 @@ export default function ({ route, navigation }) {
                 justifyContent: "center",
                 borderRadius: 15,
               }}
-              // onPress={submit}
+              onPress={submit}
               // onPress={() => {
               //   navigation.navigate("NicDrunk");
               // }}
