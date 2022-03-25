@@ -1,4 +1,10 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, {
+  useState,
+  useMemo,
+  useEffect,
+  useRef,
+  useCallback,
+} from "react";
 import {
   View,
   Image,
@@ -24,6 +30,7 @@ import {
   Camera,
   useCameraDevices,
   sortDevices,
+  PhotoFile,
 } from "react-native-vision-camera";
 
 export default function ({ navigation }) {
@@ -50,6 +57,8 @@ export default function ({ navigation }) {
 
   const [Driver, setDriver] = useState();
   const [NIC, setNIC] = useState();
+  const camera = useRef(null);
+
   const height = Dimensions.get("window").height * 0.7;
 
   useEffect(() => {
@@ -70,19 +79,13 @@ export default function ({ navigation }) {
     return null;
   }
 
-  //   const submit = async () => {
-  //     // axios({
-  //     //   method: "GET",
-  //     //   url: `http://10.0.2.2:5000/api/driver/${NIC}`,
-  //     // })
-  //     //   .then((response) => {
-  //     //     setDriver(response.data);
-  //     //     navigation.navigate("NicDetails", { Driver: response.data });
-  //     //   })
-  //     //   .catch((error) => {
-  //     //     console.log(error);
-  //     //   });
-  //   };
+  const submit = async () => {
+    const photo = await camera.current.takePhoto({
+      flash: "on",
+    });
+
+    console.log(`Media captured! ${JSON.stringify(photo.path)}`);
+  };
 
   return (
     <>
@@ -145,9 +148,11 @@ export default function ({ navigation }) {
             }}
           >
             <Camera
+              ref={camera}
               style={{ height: height }}
               device={device}
               isActive={true}
+              photo={true}
             />
           </View>
 
@@ -166,7 +171,7 @@ export default function ({ navigation }) {
                 justifyContent: "center",
                 borderRadius: 15,
               }}
-              //   onPress={submit}
+              onPress={submit}
               // onPress={() => {
               //   navigation.navigate("NicDrunk");
               // }}
