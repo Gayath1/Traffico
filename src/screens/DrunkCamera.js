@@ -1,4 +1,10 @@
-import React, { useState } from "react";
+import React, {
+  useState,
+  useMemo,
+  useEffect,
+  useRef,
+  useCallback,
+} from "react";
 import {
   View,
   Image,
@@ -6,6 +12,7 @@ import {
   ScrollView,
   TouchableOpacity,
   TextInput,
+  Dimensions,
 } from "react-native";
 import {
   Layout,
@@ -19,25 +26,65 @@ import { Ionicons, Fontisto } from "@expo/vector-icons";
 import { Avatar, Card, Title, Paragraph, Divider } from "react-native-paper";
 import { StatusBar } from "react-native";
 import axios from "axios";
+import {
+  Camera,
+  useCameraDevices,
+  sortDevices,
+  PhotoFile,
+} from "react-native-vision-camera";
 
 export default function ({ navigation }) {
   const { isDarkmode, setTheme } = useTheme();
+
+  const [devices, setDevices] = useState([]);
+  const device = useMemo(
+    () => devices.find((d) => d.position === "back"),
+    [devices]
+  );
+  const [permissons, setPermissons] = useState(false);
+
+  const getPermissons = async () => {
+    const cameraPermission = await Camera.getCameraPermissionStatus();
+    const microphonePermission = await Camera.getMicrophonePermissionStatus();
+
+    if (
+      microphonePermission === "authorized" &&
+      cameraPermission === "authorized"
+    ) {
+      setPermissons(true);
+    }
+  };
+
   const [Driver, setDriver] = useState();
   const [NIC, setNIC] = useState();
+  const camera = useRef(null);
+
+  const height = Dimensions.get("window").height * 0.7;
+
+  useEffect(() => {
+    const loadDevices = async () => {
+      try {
+        const availableCameraDevices = await Camera.getAvailableCameraDevices();
+        const sortedDevices = availableCameraDevices.sort(sortDevices);
+        setDevices(sortedDevices);
+      } catch (e) {
+        console.error("Failed to get available devices!", e);
+      }
+    };
+    loadDevices();
+    getPermissons();
+  }, []);
+
+  if (!device && !permissons) {
+    return null;
+  }
 
   const submit = async () => {
-    axios({
-      method: "GET",
-      url: `http://10.0.2.2:5000/api/driver/${NIC}`,
-    })
-      .then((response) => {
-        setDriver(response.data);
-        navigation.navigate("NicDetails", { Driver: response.data });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    
+    const photo = await camera.current.takePhoto({
+      flash: "on",
+    });
+
+    console.log(`Media captured! ${JSON.stringify(photo.path)}`);
   };
 
   return (
@@ -90,45 +137,22 @@ export default function ({ navigation }) {
             backgroundColor: isDarkmode ? "#1B1B1F" : "#FFFFFF",
           }}
         >
-          <Text
-            style={{
-              fontFamily: "SFPRODISPLAYBOLD",
-              fontSize: 20,
-              fontWeight: "bold",
-              marginLeft: 10,
-              marginTop: 10,
-              color: isDarkmode ? "#E3E1E6" : "#585E71",
-            }}
-          >
-            License Checking
-          </Text>
-
           <View
             style={{
               //   flex: 1,
               //   flexDirection: "row",
               margin: 15,
+              borderRadius: 10,
+              overflow: "hidden",
+              // height: height
             }}
           >
-            <TextInput
-              containerStyle={{ marginTop: 5 }}
-              placeholder="NIC No"
-              style={{
-                backgroundColor: isDarkmode ? "#44464E" : "#F9FAFA",
-                height: 50,
-                borderRadius: 10,
-                borderColor: "#AFAFAF",
-                borderWidth: 1,
-                paddingLeft: 10,
-                color: isDarkmode ? "#DDE1F9" : "#1B1B1F",
-                placeholderTextColor: isDarkmode ? "#DDE1F9" : "#1B1B1F",
-              }}
-              value={NIC}
-              autoCapitalize="none"
-              autoCompleteType="off"
-              autoCorrect={false}
-              keyboardType="NIC"
-              onChangeText={(text) => setNIC(text)}
+            <Camera
+              ref={camera}
+              style={{ height: height }}
+              device={device}
+              isActive={true}
+              photo={true}
             />
           </View>
 
