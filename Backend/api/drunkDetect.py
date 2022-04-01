@@ -9,6 +9,12 @@ from flask_restful import Resource
 # from flask_cors import CORS, cross_origin
 # import base64
 import boto3
+import cv2
+import time
+import numpy as np
+import winsound
+from keras.models import load_model
+from tensorflow import keras
 
 
 rek = boto3.client('rekognition', region_name='ap-southeast-1')
@@ -18,25 +24,73 @@ rek = boto3.client('rekognition', region_name='ap-southeast-1')
 
 class DrunkApi(Resource):
     def post(self):
-        image_dict = {'S3Object': {
-            'Bucket': 'traffico', 'Name': 'celebrities-show-off-their-best-drunk-faces-1.jpg'}}
+        
+        model = keras.models.load_model('api/model2.h5')
+      
+        
+        x = cv2.imread('api/image.jpg')
+        # print(x.shape)
+        r1 = 106/x.shape[0]
+        r2 = 106/x.shape[1]
 
-        response = rek.detect_faces(Image=image_dict, Attributes=['ALL'])
+        cropped = cv2.resize(x, (0, 0), fx=r2, fy=r1)
+        print(cropped.shape)
+        y = np.expand_dims(cropped, axis=0)
+        p = model.predict(y)
+        print( p)
+        if(p[0][0]>p[0][1]):
+            i=0
+            print("person is  drunk")
+        elif(p[0][0]<=p[0][1]):
+            i=1
+            print("person is not drunk")
+        
+        # image_dict = {'S3Object': {
+        #     'Bucket': 'traffico', 'Name': 'celebrities-show-off-their-best-drunk-faces-1.jpg'}}
 
-        for faceDetail in response['FaceDetails']:
-            print('Emotions: \t Confidence\n')
-        for emotion in faceDetail['Emotions']:
+        # response = rek.detect_faces(Image=image_dict, Attributes=['ALL'])
 
-            print(str(emotion['Type']) + '\t\t' + str(emotion['Confidence']))
-            print('\n')
-            # if emotion['Confidence'] >= 0.9:
-            #     return jsonify({
-            #         "drunk": False
-            #     })
-            # else:
-            #     return jsonify({
-            #         "drunk": True
-            #     })
+        # for faceDetail in response['FaceDetails']:
+        #     for emotion in faceDetail['Emotions']:
+        #         print(emotion)
+        # face_emotion_confidence = 0
+        # face_emotion = None
+        # for emotion in faceDetail.get('Emotions'):
+        #     if emotion.get('Confidence') >= face_emotion_confidence:
+        #         face_emotion_confidence = emotion['Confidence']
+        #         face_emotion = emotion.get('Type')
+        #         print(face_emotion,face_emotion_confidence)
+
+        # print(str(emotion['Type']) + '\t\t' + str(emotion['Confidence']))
+        # print('\n')
+        # if(str(emotion['Type']) + '\t\t' + str(emotion['Confidence'])) >= '0.9':
+        #     return jsonify({"status": "Drunk"})
+
+        # face_emotion_confidence = 0
+
+        # for emotion in response['FaceDetails']:
+        #     print(emotion)
+        #     if emotion.get('Confidence') >= face_emotion_confidence:
+        #         face_emotion_confidence = emotion['Confidence']
+        #         face_emotion = emotion.get('Type')
+        #         print(face_emotion_confidence)
+        #         if face_emotion_confidence >= 0.9:
+        #             return jsonify({
+        #             "drunk": True
+        #         })
+        #         else:
+        #             return jsonify({
+        #             "drunk": False
+        #         })
+
+        # if str(emotion['Confidence']) >= '0.9':
+        #     return jsonify({
+        #         "drunk": False
+        #     })
+        # else:
+        #     return jsonify({
+        #         "drunk": True
+        #     })
         # data = request.form.get("image")
 
         # hdr = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
