@@ -27,24 +27,30 @@ class DrunkApi(Resource):
         
         model = keras.models.load_model('api/model2.h5')
       
-        
+        l=[]
+        i=0
+        t=0
         x = cv2.imread('api/image.jpg')
+        # x = cv2.imread('C:/Users/Gayath/Desktop/drinks/new samples/no dunk/PXL_20220408_135247017.jpg')
         # print(x.shape)
         r1 = 106/x.shape[0]
         r2 = 106/x.shape[1]
 
         cropped = cv2.resize(x, (0, 0), fx=r2, fy=r1)
-        print(cropped.shape)
+        # print(cropped.shape)
         y = np.expand_dims(cropped, axis=0)
         p = model.predict(y)
         print( p)
+        cv2.destroyAllWindows()
         if(p[0][0]>p[0][1]):
             i=0
-            print("person is  drunk")
+            l.append(0)
+            print("person is   drunk")
         elif(p[0][0]<=p[0][1]):
             i=1
-            print("person is not drunk")
-        
+            l.append(1)
+            print("person is not  drunk")
+      
         # image_dict = {'S3Object': {
         #     'Bucket': 'traffico', 'Name': 'celebrities-show-off-their-best-drunk-faces-1.jpg'}}
 
