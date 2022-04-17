@@ -56,12 +56,14 @@ export default function ({ navigation }) {
           borderColor={isDarkmode ? "#1B1B1F" : "#FFFFFF"}
           leftContent={
             <Ionicons
-              name="chevron-back"
-              size={20}
+              name="person-circle-outline"
+              size={25}
               color={isDarkmode ?"#E3E1E6" : "#585E71"}
             />
           }
-          leftAction={() => navigation.goBack()}
+          leftAction={() => {
+                    navigation.navigate("Home");
+                  }}
           rightContent={
             <Ionicons
               name={isDarkmode ? "sunny" : "moon"}
