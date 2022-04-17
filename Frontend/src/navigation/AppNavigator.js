@@ -58,11 +58,11 @@ const Main = () => {
         headerShown: false,
       }}
     >
-      <MainStack.Screen name="Home" component={Home} />
       <MainStack.Screen name="Menu" component={SecondScreen} />
       <MainStack.Screen name="NicDrunk" component={DrunkTest} />
       <MainStack.Screen name="NicDetails" component={NicDetails} />
       <MainStack.Screen name="DrunkCamera" component={DrunkCamera} />
+      <MainStack.Screen name="Home" component={Home} />
     </MainStack.Navigator>
   );
 };
