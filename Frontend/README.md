@@ -4,7 +4,7 @@ Introduce Smart Fine payment and management system for Cops to improve the traff
 
 # Main Research questions
 
-We are Focusing on challenges regarding the Sri Lanka Traffic and drivers. 
+We are Focusing on challenges regarding the Sri Lanka Traffic and drivers.
 
 # Individual research question
 
@@ -12,7 +12,7 @@ We are Focusing on challenges regarding the Sri Lanka Traffic and drivers.
 * How to Check driver’s sobriety without physical contact?
 
 #### **IT19028538**
-* how we can detect the traffic violations from the CCTV in real time 
+* how we can detect the traffic violations from the CCTV in real time
 
 #### **IT19217482**
 * Unable to identify and address individuals/pedestrians who violates traffic laws near crossings.
@@ -29,7 +29,7 @@ We are Focusing on challenges regarding the Sri Lanka Traffic and drivers.
 
 #### **IT19028538**
 
-* Identify the vehicle number plate, vehicle type, vehicle color and get a picture of the vehicle in real-time by CCTV and send it instantly to the nearby cop. 
+* Identify the vehicle number plate, vehicle type, vehicle color and get a picture of the vehicle in real-time by CCTV and send it instantly to the nearby cop.
 * Police cops can preview the trafic violation and take the action
 
 #### **IT19217482**

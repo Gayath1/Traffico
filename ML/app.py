@@ -84,7 +84,9 @@ for subject in subjects:
     
     rightEyeHull = cv2.convexHull(rightEye)
     
+    # cv2.drawContours(frame, [leftEyeHull], -1, (0, 255, 0), 1)
 
+    # cv2.drawContours(frame, [rightEyeHull], -1, (0, 255, 0), 1)
     print ("ear",ear)
     print ("thresh",thresh)
     if ear <= thresh:
