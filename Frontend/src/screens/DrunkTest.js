@@ -37,7 +37,6 @@ export default function ({ navigation }) {
       .catch((error) => {
         console.log(error);
       });
-    
   };
 
   return (
@@ -127,7 +126,7 @@ export default function ({ navigation }) {
               autoCapitalize="none"
               autoCompleteType="off"
               autoCorrect={false}
-              keyboardType="NIC"
+              keyboardType="visible-password"
               onChangeText={(text) => setNIC(text)}
             />
           </View>
