@@ -6,8 +6,8 @@ import os
 from database.db import initialize_db
 from flask_restful import Api
 from api.nic import initialize_routes
-from api.drunkDetect import initialize_routes
-
+from api.drunkDetect import initialize_routes_drunkDetect
+from database.models import Drivers
 app = Flask(__name__)
 api = Api(app)
 
@@ -73,6 +73,7 @@ app.config['MONGODB_SETTINGS'] = {
 
 initialize_db(app)
 initialize_routes(api)
+initialize_routes_drunkDetect(api)
 
 
 # if __name__ == '__main__':

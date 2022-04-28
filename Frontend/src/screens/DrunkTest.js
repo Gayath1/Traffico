@@ -26,11 +26,15 @@ export default function ({ navigation }) {
   const [NIC, setNIC] = useState();
 
   const submit = async () => {
-    axios({
+    await axios({
       method: "GET",
+      headers: {
+        'Content-Type': 'application/json'
+      },
       url: `http://10.0.2.2:5000/api/driver/${NIC}`,
     })
       .then((response) => {
+        
         setDriver(response.data);
         navigation.navigate("NicDetails", { Driver: response.data });
       })

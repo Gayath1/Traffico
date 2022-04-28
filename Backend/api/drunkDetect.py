@@ -46,12 +46,14 @@ class DrunkApi(Resource):
             i=0
             l.append(0)
             print("person is not drunk")
+            return jsonify("person is not drunk")
             print(p[0][0])
             print(p[0][1])
         elif(p[0][0]<=p[0][1]):
             i=1
             l.append(1)
             print("person is  drunk")
+            return jsonify("person is drunk")
             print(p[0][0])
             print(p[0][1])
       
@@ -131,5 +133,5 @@ class DrunkApi(Resource):
         # })
 
 
-def initialize_routes(api):
+def initialize_routes_drunkDetect(api):
     api.add_resource(DrunkApi, '/api/getResults')

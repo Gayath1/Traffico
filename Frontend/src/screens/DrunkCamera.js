@@ -33,7 +33,7 @@ import {
   PhotoFile,
 } from "react-native-vision-camera";
 
-export default function ({ navigation }) {
+export default function ({ route,navigation }) {
   const { isDarkmode, setTheme } = useTheme();
 
   const [devices, setDevices] = useState([]);
@@ -55,7 +55,7 @@ export default function ({ navigation }) {
     }
   };
 
-  const [Driver, setDriver] = useState();
+  const [Driver, setDriver] = useState(route.params.Driver);
   const [NIC, setNIC] = useState();
   const camera = useRef(null);
 
@@ -83,7 +83,7 @@ export default function ({ navigation }) {
     const photo = await camera.current.takePhoto({
       flash: "on",
     });
-
+    navigation.navigate("DrunkResults", { Driver: Driver });
     console.log(`Media captured! ${JSON.stringify(photo.path)}`);
   };
 
