@@ -2,3 +2,7 @@
 ML/haarcascades/
 
 Backend/.env
+
+Backend/api/__pycache__/
+
+*.pyc
