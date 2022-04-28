@@ -6,3 +6,5 @@ Backend/.env
 Backend/api/__pycache__/
 
 *.pyc
+
+ML/
