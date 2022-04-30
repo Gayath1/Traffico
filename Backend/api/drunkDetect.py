@@ -15,7 +15,7 @@ import numpy as np
 import winsound
 from keras.models import load_model
 from tensorflow import keras
-
+import base64
 
 rek = boto3.client('rekognition', region_name='ap-southeast-1')
 
@@ -32,10 +32,11 @@ class DrunkApi(Resource):
         t = 0
         # x = cv2.imread('api/averagewomanface.jpg')
         # x = cv2.imread(r'C:/Users/Gayath/Desktop/drinks/new samples/no drink/PXL_20220408_135333575.jpg')
-        body = request.get_json()
-        path = body['path']
-        print(path)
-        x = cv2.imread(path)
+
+        # read image file string data
+        file = request.files['image']
+        npimg = np.fromfile(file, np.uint8)
+        x = cv2.imdecode(npimg, cv2.IMREAD_COLOR)
 
         # print(x.shape)
         r1 = 106/x.shape[0]
