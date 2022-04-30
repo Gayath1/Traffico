@@ -33,7 +33,7 @@ import {
   PhotoFile,
 } from "react-native-vision-camera";
 
-export default function ({ route,navigation }) {
+export default function ({ route, navigation }) {
   const { isDarkmode, setTheme } = useTheme();
 
   const [devices, setDevices] = useState([]);
@@ -83,7 +83,17 @@ export default function ({ route,navigation }) {
     const photo = await camera.current.takePhoto({
       flash: "on",
     });
-    navigation.navigate("DrunkResults", { Driver: Driver });
+
+    let body = {
+      path: JSON.stringify(photo.path),
+    };
+    const results = await axios.post(
+      `http://10.0.2.2:5000/api/getResults`,
+      body
+    );
+    console.log(results);
+
+    navigation.navigate("DrunkResults", { Driver: Driver, Results: results });
     console.log(`Media captured! ${JSON.stringify(photo.path)}`);
   };
 

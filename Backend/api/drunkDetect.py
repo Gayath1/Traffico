@@ -24,15 +24,19 @@ rek = boto3.client('rekognition', region_name='ap-southeast-1')
 
 class DrunkApi(Resource):
     def post(self):
-        
+
         # model = keras.models.load_model('api/model2.h5')
         model = load_model('api/DrunkKerasModel.h5')
-        l=[]
-        i=0
-        t=0
+        l = []
+        i = 0
+        t = 0
         # x = cv2.imread('api/averagewomanface.jpg')
-        x = cv2.imread(r'C:/Users/Gayath/Desktop/drinks/new samples/no drink/PXL_20220408_135333575.jpg')
-        
+        # x = cv2.imread(r'C:/Users/Gayath/Desktop/drinks/new samples/no drink/PXL_20220408_135333575.jpg')
+        body = request.get_json()
+        path = body['path']
+        print(path)
+        x = cv2.imread(path)
+
         # print(x.shape)
         r1 = 106/x.shape[0]
         r2 = 106/x.shape[1]
@@ -41,22 +45,22 @@ class DrunkApi(Resource):
         # print(cropped.shape)
         y = np.expand_dims(cropped, axis=0)
         p = model.predict(y)
-        print("predict",p)
-        if(p[0][0]>p[0][1]):
-            i=0
+        print("predict", p)
+        if(p[0][0] > p[0][1]):
+            i = 0
             l.append(0)
             print("person is not drunk")
             return jsonify("person is not drunk")
             print(p[0][0])
             print(p[0][1])
-        elif(p[0][0]<=p[0][1]):
-            i=1
+        elif(p[0][0] <= p[0][1]):
+            i = 1
             l.append(1)
             print("person is  drunk")
             return jsonify("person is drunk")
             print(p[0][0])
             print(p[0][1])
-      
+
         # image_dict = {'S3Object': {
         #     'Bucket': 'traffico', 'Name': 'celebrities-show-off-their-best-drunk-faces-1.jpg'}}
 
