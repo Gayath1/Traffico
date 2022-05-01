@@ -23,10 +23,11 @@ import axios from "axios";
 export default function ({ route, navigation }) {
   const { isDarkmode, setTheme } = useTheme();
   const [Driver, setDriver] = useState(route.params.Driver);
+  const [Results, setResults] = useState(route.params.Results);
   const [NIC, setNIC] = useState();
-
+  console.log(Results);
   const submit = async () => {
-    navigation.navigate("DrunkCamera", { Driver: Driver });
+    // navigation.navigate("DrunkCamera", { Driver: Driver });
   };
 
   return (
@@ -227,22 +228,39 @@ export default function ({ route, navigation }) {
                   flexDirection: "row",
                 }}
               >
-                <Text
-                  style={{
-                    fontFamily: "Poppins",
-                    fontSize: 20,
-                    fontWeight: "600",
-                    marginLeft:20,
-                    padding: 20,
-                    color: isDarkmode ? "#DDE1F9" : "#232323",
-                  }}
-                >
-                  Failed
-                </Text>
+                {Results !== "True" ? (
+                  <Text
+                    style={{
+                      fontFamily: "Poppins",
+                      fontSize: 20,
+                      fontWeight: "600",
+                      marginLeft: 20,
+                      padding: 20,
+                      color: isDarkmode ? "#DDE1F9" : "#232323",
+                    }}
+                  >
+                    Passed
+                  </Text>
+                ) : (
+                  <Text
+                    style={{
+                      fontFamily: "Poppins",
+                      fontSize: 20,
+                      fontWeight: "600",
+                      marginLeft: 20,
+                      padding: 20,
+                      color: isDarkmode ? "#DDE1F9" : "#232323",
+                    }}
+                  >
+                    Failed
+                  </Text>
+                )}
                 <Ionicons
-                  name={isDarkmode ? "close-circle" : "close-circle"}
+                  name={
+                    Results !== "True" ? "checkmark-circle" : "close-circle"
+                  }
                   size={25}
-                  color={isDarkmode ? "#B21313" : "#B21313"}
+                  color={Results !== "True" ? "#42ba96" : "#B21313"}
                   style={{ alignSelf: "center", marginRight: 25 }}
                 />
               </View>

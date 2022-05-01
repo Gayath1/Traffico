@@ -82,19 +82,38 @@ export default function ({ route, navigation }) {
   const submit = async () => {
     const photo = await camera.current.takePhoto({
       flash: "on",
+      enableAutoRedEyeReduction: true,
     });
 
-    let body = {
-      path: JSON.stringify(photo.path),
-    };
-    const results = await axios.post(
-      `http://10.0.2.2:5000/api/getResults`,
-      body
-    );
-    console.log(results);
-
-    navigation.navigate("DrunkResults", { Driver: Driver, Results: results });
-    console.log(`Media captured! ${JSON.stringify(photo.path)}`);
+    const ext = photo.path.substring(photo.path.lastIndexOf(".") + 1);
+    const fileName = photo.path.replace(/^.*[\\\/]/, "");
+    // let xhr = new XMLHttpRequest();
+    // xhr.open("POST", `http://10.0.2.2:5000/api/getResults`);
+    const formData = new FormData();
+    formData.append("image", {
+      uri: "file://" + photo.path,
+      name: fileName,
+      type: `image/${ext}`,
+    });
+    // console.log(formData);
+    // xhr.send(formData);
+    let response = await new Promise((resolve) => {
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", `http://10.0.2.2:5000/api/getResults`, true);
+      xhr.onload = function (e) {
+        resolve(xhr.response);
+        console.log(xhr.response);
+        navigation.navigate("DrunkResults", {
+          Driver: Driver,
+          Results: xhr.response,
+        });
+      };
+      xhr.onerror = function () {
+        resolve(undefined);
+        console.error("** An error occurred during the XMLHttpRequest");
+      };
+      xhr.send(formData);
+    });
   };
 
   return (

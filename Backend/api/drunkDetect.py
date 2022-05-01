@@ -16,6 +16,8 @@ import winsound
 from keras.models import load_model
 from tensorflow import keras
 import base64
+import io
+from imageio import imread
 
 rek = boto3.client('rekognition', region_name='ap-southeast-1')
 
@@ -35,10 +37,11 @@ class DrunkApi(Resource):
 
         # read image file string data
         file = request.files['image']
+        print("file", file)
+
         npimg = np.fromfile(file, np.uint8)
         x = cv2.imdecode(npimg, cv2.IMREAD_COLOR)
 
-        # print(x.shape)
         r1 = 106/x.shape[0]
         r2 = 106/x.shape[1]
 
@@ -51,14 +54,14 @@ class DrunkApi(Resource):
             i = 0
             l.append(0)
             print("person is not drunk")
-            return jsonify("person is not drunk")
+            return False
             print(p[0][0])
             print(p[0][1])
         elif(p[0][0] <= p[0][1]):
             i = 1
             l.append(1)
             print("person is  drunk")
-            return jsonify("person is drunk")
+            return jsonify("person is drunk", True)
             print(p[0][0])
             print(p[0][1])
 
