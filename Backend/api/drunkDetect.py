@@ -5,7 +5,7 @@ from flask_restful import Resource
 # from urllib.request import urlopen, Request
 # import matplotlib.pyplot as plt
 # from fer import FER
-# import tensorflow as tf
+import tensorflow as tf
 # from flask_cors import CORS, cross_origin
 # import base64
 import boto3
@@ -18,6 +18,8 @@ from tensorflow import keras
 import base64
 import io
 from imageio import imread
+import sys
+from tensorflow.python.platform import gfile
 
 rek = boto3.client('rekognition', region_name='ap-southeast-1')
 
@@ -27,118 +29,102 @@ rek = boto3.client('rekognition', region_name='ap-southeast-1')
 class DrunkApi(Resource):
     def post(self):
 
-        # model = keras.models.load_model('api/model2.h5')
-        model = load_model('api/DrunkKerasModel.h5')
-        l = []
-        i = 0
-        t = 0
-        # x = cv2.imread('api/averagewomanface.jpg')
-        # x = cv2.imread(r'C:/Users/Gayath/Desktop/drinks/new samples/no drink/PXL_20220408_135333575.jpg')
+        face_cascade = cv2.CascadeClassifier(
+            'haarcascade/haarcascade_frontalface_default.xml')
 
         # read image file string data
         file = request.files['image']
         print("file", file)
 
         npimg = np.fromfile(file, np.uint8)
-        x = cv2.imdecode(npimg, cv2.IMREAD_COLOR)
+        img = cv2.imdecode(npimg, cv2.IMREAD_COLOR)
 
-        r1 = 106/x.shape[0]
-        r2 = 106/x.shape[1]
+        # Convert into grayscale
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        # Detect faces
+        faces = face_cascade.detectMultiScale(
+            gray, scaleFactor=1.1, minNeighbors=15, minSize=(30, 30), flags=cv2.CASCADE_SCALE_IMAGE)
+        print("[INFO] {} faces detected...".format(len(faces)))
+        if (faces is None):
+            print('Failed to detect face')
+            return 0
 
-        cropped = cv2.resize(x, (0, 0), fx=r2, fy=r1)
+        for (x, y, w, h) in faces:
+
+            faceimg = img[y:y+h, x:x+w]
+
+        r1 = 106/faceimg.shape[0]
+        r2 = 106/faceimg.shape[1]
+
+        cropped = cv2.resize(faceimg, (0, 0), fx=r2, fy=r1)
+
+        cv2.imshow("face crop", cropped)
+        cv2.waitKey(0)
+
+        # img_shape = faces.shape
+        # img = cv2.resize(faces, (0, 0), fx=min_w /img_shape[1], fy=min_h / img_shape[0], interpolation=cv2.INTER_AREA)
         # print(cropped.shape)
+
         y = np.expand_dims(cropped, axis=0)
-        p = model.predict(y)
-        print("predict", p)
+        votes = []
+        result = []
+
+        DrunkKerasModel = load_model('api/DrunkKerasModel.h5')
+        p = DrunkKerasModel.predict(y)
+        print("DrunkKerasModel_predict", p[0])
         if(p[0][0] > p[0][1]):
-            i = 0
-            l.append(0)
+
+            votes.append(0)
+            # result.append('sober')
             print("person is not drunk")
-            return False
-            print(p[0][0])
-            print(p[0][1])
+
         elif(p[0][0] <= p[0][1]):
-            i = 1
-            l.append(1)
-            print("person is  drunk")
-            return jsonify("person is drunk", True)
-            print(p[0][0])
-            print(p[0][1])
 
-        # image_dict = {'S3Object': {
-        #     'Bucket': 'traffico', 'Name': 'celebrities-show-off-their-best-drunk-faces-1.jpg'}}
+            votes.append(1)
+            # result.append('drunk')
+            print("person is drunk")
 
-        # response = rek.detect_faces(Image=image_dict, Attributes=['ALL'])
+        best_model_VGG = load_model('api/best_model_VGG.h5')
+        p1 = best_model_VGG.predict(y)
+        print("best_model_VGG_predict", p1)
+        if(p1[0][0] > p1[0][1]):
 
-        # for faceDetail in response['FaceDetails']:
-        #     for emotion in faceDetail['Emotions']:
-        #         print(emotion)
-        # face_emotion_confidence = 0
-        # face_emotion = None
-        # for emotion in faceDetail.get('Emotions'):
-        #     if emotion.get('Confidence') >= face_emotion_confidence:
-        #         face_emotion_confidence = emotion['Confidence']
-        #         face_emotion = emotion.get('Type')
-        #         print(face_emotion,face_emotion_confidence)
+            votes.append(1)
+            # result.append('drunk')
+            print("person is drunk")
 
-        # print(str(emotion['Type']) + '\t\t' + str(emotion['Confidence']))
-        # print('\n')
-        # if(str(emotion['Type']) + '\t\t' + str(emotion['Confidence'])) >= '0.9':
-        #     return jsonify({"status": "Drunk"})
+        elif(p1[0][0] <= p1[0][1]):
 
-        # face_emotion_confidence = 0
+            votes.append(0)
+            # result.append('sober')
+            print("person is not drunk")
 
-        # for emotion in response['FaceDetails']:
-        #     print(emotion)
-        #     if emotion.get('Confidence') >= face_emotion_confidence:
-        #         face_emotion_confidence = emotion['Confidence']
-        #         face_emotion = emotion.get('Type')
-        #         print(face_emotion_confidence)
-        #         if face_emotion_confidence >= 0.9:
-        #             return jsonify({
-        #             "drunk": True
-        #         })
-        #         else:
-        #             return jsonify({
-        #             "drunk": False
-        #         })
+        best_model_DrunkKeras_layer4 = load_model(
+            'api/best_model_DrunkKeras_layer4.h5')
+        p2 = best_model_DrunkKeras_layer4.predict(y)
+        print("best_model_DrunkKeras_layer4", p2)
+        if(p2[0][0] > p2[0][1]):
 
-        # if str(emotion['Confidence']) >= '0.9':
-        #     return jsonify({
-        #         "drunk": False
-        #     })
-        # else:
-        #     return jsonify({
-        #         "drunk": True
-        #     })
-        # data = request.form.get("image")
+            votes.append(1)
+            # result.append('drunk')
+            print("person is drunk")
 
-        # hdr = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
-        #           'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-        #            'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
-        #            'Accept-Encoding': 'none',
-        #            'Accept-Language': 'en-US,en;q=0.8',
-        #            'Connection': 'keep-alive'}
+        elif(p2[0][0] <= p2[0][1]):
 
-        # req = Request(data, headers=hdr)
+            votes.append(0)
+            # result.append('sober')
+            print("person is not drunk")
 
-        # f = urlopen(req)
-        # img = plt.imread(f, 0)
-        # detector = FER(mtcnn=True)
-        # emotions = detector.detect_emotions(img)[0]['emotions']
-
-        # test = np.array([[ 0, emotions["angry"], 0, emotions["disgust"], emotions["fear"], emotions["happy"], emotions["neutral"], emotions["sad"], emotions["surprise"], 0 ]])
-        # prediction = model.predict(test)
-        # print(prediction)
-
-        # if prediction[0][0] >= 0.9:
-        #     return jsonify({
-        #     "drunk": True
-        # })
-        # else:
-        #     return jsonify({
-        #     "drunk": False
-        # })
+        print(votes)
+        DrunkVotes = (votes.count(1))
+        SoberVotes = (votes.count(0))
+        
+        if(DrunkVotes > SoberVotes):
+            print("person is drunk")
+            return True
+        elif(DrunkVotes < SoberVotes):
+            print("person is not drunk")
+            return False    
 
 
 def initialize_routes_drunkDetect(api):
