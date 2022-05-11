@@ -22,17 +22,17 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: '3.9'
-          working-directory: ./backend
+          working-directory: ./Backend
         
       - name: Create and start virtual environment
         run: |
           python -m venv venv
           source venv/bin/activate
-        working-directory: backend  
+        working-directory: ./Backend  
       
       - name: Install dependencies
         run: pip install -r requirements.txt
-        working-directory: ./backend
+        working-directory: ./Backend
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
       
@@ -43,7 +43,7 @@ jobs:
           path: |
             . 
             !venv/
-          working-directory: ./backend    
+          working-directory: ./Backend    
 
   deploy:
     runs-on: ubuntu-latest
