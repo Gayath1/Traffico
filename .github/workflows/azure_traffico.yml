@@ -38,7 +38,7 @@ jobs:
           name: python-app
           path: |
             . 
-            !venv/Backend
+            !venv/
 
   deploy:
     runs-on: ubuntu-latest
