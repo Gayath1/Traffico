@@ -1,6 +1,4 @@
 Flask==2.0.3
-opencv-python
-numpy==1.22
 Flask-PyMongo==2.3.0
 flask-mongoengine==1.0.0
 flask-restful
