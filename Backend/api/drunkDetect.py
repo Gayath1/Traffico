@@ -8,7 +8,6 @@ from flask_restful import Resource
 import tensorflow as tf
 # from flask_cors import CORS, cross_origin
 # import base64
-import boto3
 import cv2
 import time
 import numpy as np
@@ -21,9 +20,7 @@ from imageio import imread
 import sys
 from tensorflow.python.platform import gfile
 
-rek = boto3.client('rekognition', region_name='ap-southeast-1')
 
-# model = tf.keras.models.load_model("model.h5")
 
 
 class DrunkApi(Resource):
