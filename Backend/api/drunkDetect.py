@@ -118,13 +118,13 @@ class DrunkApi(Resource):
         print(votes)
         DrunkVotes = (votes.count(1))
         SoberVotes = (votes.count(0))
-        
+
         if(DrunkVotes > SoberVotes):
             print("person is drunk")
             return True
         elif(DrunkVotes < SoberVotes):
             print("person is not drunk")
-            return False    
+            return False
 
 
 def initialize_routes_drunkDetect(api):
