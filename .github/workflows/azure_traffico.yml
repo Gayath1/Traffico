@@ -31,7 +31,8 @@ jobs:
         working-directory: ./Backend  
       
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install -r requirements.txt,pip install --upgrade tensorflow
+        
         working-directory: Backend
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
