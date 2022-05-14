@@ -38,6 +38,9 @@ jobs:
       - name: Install dependencies tensorflow
         run: pip install --upgrade tensorflow
         
+      - name: Install dependencies opencv
+        run: pip install opencv-python
+        
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
       
       - name: Upload artifact for deployment jobs
