@@ -13,8 +13,8 @@ import cv2
 import time
 import numpy as np
 import winsound
-from keras.models import load_model
 from tensorflow import keras
+from keras.models import load_model
 import base64
 import io
 from imageio import imread
