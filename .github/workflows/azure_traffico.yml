@@ -45,7 +45,7 @@ jobs:
           path: |
             . 
             !venv/
-          working-directory: Backend    
+          working-directory: ./Backend    
 
   deploy:
     runs-on: ubuntu-latest
