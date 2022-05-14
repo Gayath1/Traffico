@@ -1,6 +1,7 @@
-Flask-PyMongo==2.3.0
 Flask==2.0.3
+opencv-python
+numpy==1.22
+tensorflow==2.8.0
+Flask-PyMongo==2.3.0
 flask-mongoengine==1.0.0
 flask-restful
-tensorflow==2.8.0
-numpy==1.22
