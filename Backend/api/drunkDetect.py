@@ -13,8 +13,8 @@ import cv2
 import time
 import numpy as np
 import winsound
-from keras.models import load_model
 from tensorflow import keras
+from keras.models import load_model
 import base64
 import io
 from imageio import imread
@@ -28,7 +28,7 @@ rek = boto3.client('rekognition', region_name='ap-southeast-1')
 
 class DrunkApi(Resource):
     def post(self):
-
+        print("TensorFlow version:", tf.__version__)
         face_cascade = cv2.CascadeClassifier(
             'haarcascade/haarcascade_frontalface_default.xml')
 
@@ -99,10 +99,10 @@ class DrunkApi(Resource):
             # result.append('sober')
             print("person is not drunk")
 
-        best_model_DrunkKeras_layer4 = load_model(
-            'api/best_model_DrunkKeras_layer4.h5')
-        p2 = best_model_DrunkKeras_layer4.predict(y)
-        print("best_model_DrunkKeras_layer4", p2)
+        best_model_CNN6 = load_model(
+            'api/best_model_CNN6.h5')
+        p2 = best_model_CNN6.predict(y)
+        print("best_model_CNN6", p2)
         if(p2[0][0] > p2[0][1]):
 
             votes.append(1)
