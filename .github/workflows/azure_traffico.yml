@@ -15,26 +15,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    
       - uses: actions/checkout@v2
+
       - name: Set up Python version
-       
         uses: actions/setup-python@v1
         with:
           python-version: '3.9'
-          working-directory: Backend
-        
+
       - name: Create and start virtual environment
         run: |
           python -m venv venv
           source venv/bin/activate
-        working-directory: ./Backend  
       
       - name: Install dependencies
         run: pip install -r requirements.txt
-        
-        working-directory: ./Backend
-
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
       
@@ -45,7 +39,6 @@ jobs:
           path: |
             . 
             !venv/
-          working-directory: ./Backend    
 
   deploy:
     runs-on: ubuntu-latest
@@ -67,4 +60,4 @@ jobs:
         with:
           app-name: 'Traffico'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_FEE986ABAE8548B8AFB6893AC439DCF8 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BBAB6E3C7FCF4469BFF50C1AA3FF772B }}
