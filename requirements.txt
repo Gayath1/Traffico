@@ -4,6 +4,6 @@ keras==2.8.0
 mongoengine==0.24.1
 numpy==1.22.3
 python-dotenv==0.20.0
-tensorflow-cpu==2.6.0
+tensorflow-cpu==2.8.0
 gunicorn
 opencv-python-headless
