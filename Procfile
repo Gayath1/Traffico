@@ -1,1 +1,1 @@
-web: gunicorn --chdir ./Backend app:app --preload --workers 1
+web: gunicorn --chdir ./Backend app:app
