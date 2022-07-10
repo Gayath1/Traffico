@@ -1,1 +1,1 @@
-web: gunicorn  app:app
+web: gunicorn --childr ./Backend app:app
