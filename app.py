@@ -76,7 +76,7 @@ initialize_routes(api)
 initialize_routes_drunkDetect(api)
 
 
-# if __name__ == '__main__':
+#  if __name__ == '__main__':
 app.run(debug=True)
 
 # app.run(host='localhost', port=5000)
