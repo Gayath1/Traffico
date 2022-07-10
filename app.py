@@ -75,9 +75,8 @@ initialize_db(app)
 initialize_routes(api)
 initialize_routes_drunkDetect(api)
 
-
-#  if __name__ == '__main__':
-port = int(os.environ.get('PORT'))
-app.run(debug=True,host='0.0.0.0',  port=port)
+#port = int(os.environ.get('PORT'))
+if __name__ == '__main__':
+    app.run(debug=True,port=8000)
 
 # app.run(host='localhost', port=5000)
