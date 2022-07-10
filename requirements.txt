@@ -8,3 +8,4 @@ tensorflow-cpu
 gunicorn
 opencv-python-headless
 flask_mongoengine
+imageio
