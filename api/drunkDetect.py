@@ -42,8 +42,6 @@ class DrunkApi(Resource):
 
         cropped = cv2.resize(faceimg, (0, 0), fx=r2, fy=r1)
 
-        cv2.imshow("face crop", cropped)
-        cv2.waitKey(0)
 
         # img_shape = faces.shape
         # img = cv2.resize(faces, (0, 0), fx=min_w /img_shape[1], fy=min_h / img_shape[0], interpolation=cv2.INTER_AREA)
